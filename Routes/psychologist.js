@@ -57,7 +57,7 @@ router.post("/psychologist/addhistorycall", addHistoryCall);
 router.delete("/psychologist/removemeet/:id", removeMeet);
 
 // @Endpoint     http://localhost:5000/api/psychologist/gethistorycall
-// @Method      POST
+// @Method      GET
 // @Access      Public
 router.get("/psychologist/gethistorycall/:email", getHistoryCall);
 
@@ -67,7 +67,7 @@ router.get("/psychologist/gethistorycall/:email", getHistoryCall);
 router.post("/psychologist/addcancelcall", addCancelCall);
 
 // @Endpoint     http://localhost:5000/api/psychologist/getcancelcall
-// @Method      POST
+// @Method      GET
 // @Access      Public
 router.get("/psychologist/getcancelcall/:email", getCancelCall);
 

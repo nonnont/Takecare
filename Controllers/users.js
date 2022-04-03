@@ -8,6 +8,7 @@ const Market = require("../Models/Market");
 const Meet = require("../Models/Meet");
 const HistoryCall = require("../Models/History");
 const CancelCall = require("../Models/Cancelcall");
+const AverageScore = require("../Models/AverageScore");
 
 // function onlyUnique(value, index, self) {
 //   return self.indexOf(value) === index;
@@ -378,5 +379,47 @@ exports.getCancelCall = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error getCancelCall");
+  }
+};
+
+exports.postAverageScore = async (req, res) => {
+  try {
+    var email = req.params.email;
+    var score1 = req.params.score_stress;
+    var score2 = req.params.score2;
+
+    // const { email } = req.body;
+
+    console.log(email, score1, score2);
+
+    // const salt = await bcrypt.genSalt(10);
+    var averagescore = new AverageScore({
+      email,
+      score1: score1,
+      score2: score2,
+    });
+
+    await averagescore.save();
+    res.send(averagescore);
+    console.log("POST AverageScore success!");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error! POST AverageScore");
+  }
+};
+
+exports.getAverageScore = async (req, res) => {
+  try {
+    var email = req.params.email;
+    // var email = "b";
+    console.log("email => ", email);
+
+    const averagescore = await AverageScore.find({ emailUser: email });
+
+    // res.render("<name-of-your-view(ejs,jade)>", { chartData: averagescore });
+    res.send(averagescore);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error getAverageScore");
   }
 };

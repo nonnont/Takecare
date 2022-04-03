@@ -19,6 +19,8 @@ const {
   getHistoryCall,
   addCancelCall,
   getCancelCall,
+  postAverageScore,
+  getAverageScore,
 } = require("../Controllers/users");
 
 // @Endpoint     http://localhost:5000/api/users
@@ -97,8 +99,24 @@ router.get("/user/gethistorycall/:email", getHistoryCall);
 router.post("/user/addcancelcall", addCancelCall);
 
 // @Endpoint     http://localhost:5000/api/user/getcancelcall
-// @Method      POST
+// @Method      GET
 // @Access      Public
 router.get("/user/getcancelcall/:email", getCancelCall);
+
+// @Endpoint     http://localhost:5000/api/users/activity/averagescore/postaveragescore
+// @Method      POST
+// @Access      Public
+router.post(
+  "/users/activity/averagescore/postaveragescore/:email/:score_stress/:score2",
+  postAverageScore
+);
+
+// @Endpoint     http://localhost:5000/api/user/activity/averagescore/getaveragescore
+// @Method      GET
+// @Access      Public
+router.get(
+  "/user/activity/averagescore/getaveragescore/:email",
+  getAverageScore
+);
 
 module.exports = router;
